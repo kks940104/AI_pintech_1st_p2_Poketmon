@@ -10,11 +10,12 @@ public class Utils {
 
     private final HttpServletRequest request;
 
-    //.*(iPhone|iPod|iPad|BlackBerry|Android|Windows CE|LG|MOT|SAMSUNG|SonyEricsson).*
     public boolean isMobile() {
+
+        // 요청 헤더 - User-Agent / 브라우저 정보
         String ua = request.getHeader("User-Agent");
-        String pattern = ".*(iPhone|iPod|iPad|BlackBerry|Android|" +
-                "Windows CE|LG|MOT|SAMSUNG|SonyEricsson).*";
+        String pattern = ".*(iPhone|iPod|iPad|BlackBerry|Android|Windows CE|LG|MOT|SAMSUNG|SonyEricsson).*";
+
 
         return ua.matches(pattern);
     }
@@ -27,6 +28,7 @@ public class Utils {
      */
     public String tpl(String path) {
         String prefix = isMobile() ? "mobile" : "front";
+
         return String.format("%s/%s", prefix, path);
     }
 }
